@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-sscale=1"/>
+    <title>Aplikasi Penjualan Barang</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        background: #fff1ea;
+      }
+      header {
+        background: #ffb7a5;
+        color: #5a2d2d;
+      }
+      .menu-card {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 25px;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+      }
+      .menu-card:hover {
+        background: #ffe4da;
+      }
+      .product-card img {
+        width: 100%;
+        border-radius: 12px;
+      }
+      .profile-img {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .back-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+      }
+      .btn-danger {
+        background-color: #ff9f87;
+        border: none;
+      }
+      .btn-danger:hover {
+        background-color: #ff8a6f;
+      }
+      .table-dark {
+        background-color: #ffb7a5 !important;
+      }
+      #menu {
+        width: 100%;
+        border-bottom: 2px solid #ffd3c5;
+      }
+      .nav-link {
+        color: #b24c63;
+        font-weight: 500;
+      }
+      .nav-link:hover {
+        background: #ffe4da;
+        color: #8b2f4a;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="p-3 navbar navbar-light">
+      <div class="container d-flex justify-content-between">
+        <h5 class="mb-0">🌸 Skincare Store 🌸</h5>
+        <button
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#menu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MENU GARIS TIGA -->
+    <div class="collapse bg-light" id="menu">
+      <ul class="nav flex-column p-3">
+        <li class="nav-item">
+          <a class="nav-link" onclick="showPage('beranda')">Beranda</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick="showPage('produk')">Produk</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick="showPage('transaksi')">Transaksi</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick="showPage('tutorial')"
+            >Tutorial Skincare</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick="showPage('profil')">Profil</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="container mt-4">
+      <!-- LOGIN -->
+      <section id="login">
+        <h5>Login</h5>
+        <input id="user" class="form-control mb-2" placeholder="Username" />
+        <input
+          id="pass"
+          type="password"
+          class="form-control mb-2"
+          placeholder="Password"
+        />
+        <button class="btn btn-danger" onclick="login()">Login</button>
+      </section>
+
+      <!-- BERANDA -->
+      <section id="beranda" class="d-none">
+        <h5>Beranda</h5>
+        <div class="row g-3 mt-3">
+          <div class="col-6">
+            <div class="menu-card" onclick="showPage('produk')">
+              🧴<br />Produk
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="menu-card" onclick="showPage('transaksi')">
+              🛒<br />Transaksi
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="menu-card" onclick="showPage('tutorial')">
+              🎥<br />Tutorial
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="menu-card" onclick="showPage('profil')">
+              👤<br />Profil
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRODUK -->
+      <section id="produk" class="d-none">
+        <h5>Daftar Produk</h5>
+        <div class="row g-3">
+          <div class="col-6 product-card">
+            <img src="Cleanser.jpg" />
+            <p class="mt-2 mb-0">Cleanser</p>
+            <small>Rp90.000</small>
+          </div>
+          <div class="col-6 product-card">
+            <img src="Moisturizer.jpg" />
+            <p class="mt-2 mb-0">Serum</p>
+            <small>Rp80.000</small>
+          </div>
+          <div class="col-6 product-card">
+            <img src="Serum.jpg" />
+            <p class="mt-2 mb-0">Moisturizer</p>
+            <small>Rp70.000</small>
+          </div>
+          <div class="col-6 product-card">
+            <img src="Sunscreen.jpg" />
+            <p class="mt-2 mb-0">Sunscreen</p>
+            <small>Rp60.000</small>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRANSAKSI -->
+      <section id="transaksi" class="d-none">
+        <h5>Transaksi Penjualan</h5>
+
+        <form id="formTransaksi" class="mb-3">
+          <select id="nama" class="form-control mb-2">
+            <option value="">-- Pilih Produk --</option>
+            <option value="Cleanser">Cleanser</option>
+            <option value="Serum">Serum</option>
+            <option value="Moisturizer">Moisturizer</option>
+            <option value="Sunscreen">Sunscreen</option>
+          </select>
+
+          <input
+            id="jumlah"
+            type="number"
+            class="form-control mb-2"
+            placeholder="Jumlah"
+          />
+          <input id="harga" class="form-control mb-2" placeholder="Harga" />
+          <input
+            id="kategori"
+            class="form-control mb-2"
+            placeholder="Kategori"
+          />
+          <input id="tanggal" type="date" class="form-control mb-2" />
+          <button class="btn btn-danger w-100">Simpan</button>
+        </form>
+
+        <table class="table table-bordered table-striped">
+          <thead class="table-dark">
+            <tr>
+              <th>No</th>
+              <th>Gambar</th>
+              <th>Nama</th>
+              <th>Jumlah</th>
+              <th>Kategori</th>
+              <th>Harga</th>
+              <th>Tanggal</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="tabelTransaksi"></tbody>
+        </table>
+      </section>
+
+      <!-- TUTORIAL -->
+      <section id="tutorial" class="d-none">
+        <h5>Tutorial Skincare</h5>
+        <video controls class="w-100 mb-3">
+          <source src="Skincare.mp4" />
+        </video>
+        <audio controls>
+          <source src="skincare.mp3" />
+        </audio>
+      </section>
+
+      <!-- PROFIL -->
+      <section id="profil" class="d-none text-center">
+        <img src="foto.jpg" class="profile-img mb-3" />
+        <h5>Titi Haryanti | 251011701045 | 01SIFM003<h5>
+        <p class="text-muted">Mahasiswa Universitas Pamulang</p>
+        <div class="card p-3">
+          <p>
+            Aplikasi ini dibuat untuk memenuhi tugas Ujian Akhir Semester mata
+            kuliah Pemrograman Web 1.
+          </p>
+          <p>
+            Aplikasi ini menampilkan fitur login, daftar produk skincare,
+            transaksi penjualan, serta tutorial penggunaan skincare dalam bentuk
+            video dan audio.
+          </p>
+          <p class="mb-0">
+            Teknologi yang digunakan: HTML, CSS, Bootstrap, dan JavaScript.
+          </p>
+        </div>
+      </section>
+
+      <button
+        id="backBtn"
+        class="btn btn-danger back-btn d-none"
+        onclick="showPage('beranda')"
+      >
+        ← Kembali
+      </button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // 
+      let isLogin = false;
+
+      function login() {
+        if (!user.value || !pass.value) {
+          alert("Username dan Password wajib diisi");
+          return;
+        }
+        isLogin = true;
+        showPage("beranda");
+      }
+
+      function showPage(id) {
+        if (!isLogin && id !== "login") {
+          alert("Login dulu");
+          return;
+        }
+        [
+          "login",
+          "beranda",
+          "produk",
+          "transaksi",
+          "tutorial",
+          "profil",
+        ].forEach((p) => {
+          document.getElementById(p).classList.add("d-none");
+        });
+        document.getElementById(id).classList.remove("d-none");
+        backBtn.classList.toggle("d-none", id === "beranda" || id === "login");
+      }
+
+      formTransaksi.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        if (
+          !nama.value ||
+          !jumlah.value ||
+          !harga.value ||
+          !kategori.value ||
+          !tanggal.value
+        ) {
+          alert("Semua field wajib diisi");
+          return;
+        }
+
+        let gambar = "";
+if (nama.value === "Cleanser")
+  gambar = "Cleanser.jpg";
+if (nama.value === "Serum")
+  gambar = "Serum.jpg";
+if (nama.value === "Moisturizer")
+  gambar = "Moisturizer.jpg";
+if (nama.value === "Sunscreen")
+  gambar = "Sunscreen.jpg";
+
+        let total = jumlah.value * harga.value;
+
+        let row = tabelTransaksi.insertRow();
+        row.innerHTML = `
+    <td>${tabelTransaksi.rows.length}</td>
+    <td><img src="${gambar}" width="50"></td>
+    <td>${nama.value}</td>
+    <td>${jumlah.value}</td>
+    <td>${kategori.value}</td>
+    <td>Rp ${harga.value}</td>
+    <td>${tanggal.value}</td>
+    <td>Rp ${total}</td>
+  `;
+        formTransaksi.reset();
+      });
+    </script>
+  </body>
+</html>
